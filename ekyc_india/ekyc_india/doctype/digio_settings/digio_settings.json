@@ -1,0 +1,162 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-03 16:43:34.191337",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "production_settings_section",
+  "production_url",
+  "enable_production",
+  "column_break_ktqp",
+  "api_client_id",
+  "api_secret",
+  "sandbox_settings_section",
+  "sandbox_url",
+  "enable_sandbox",
+  "column_break_demw",
+  "sandbox_api_client_id",
+  "sandbox_api_secret",
+  "general_settings_section",
+  "notify_signers",
+  "generate_access_token",
+  "column_break_klih",
+  "send_sign_link",
+  "enable_for_document_section",
+  "documents"
+ ],
+ "fields": [
+  {
+   "fieldname": "production_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Production Settings"
+  },
+  {
+   "depends_on": "enable_production",
+   "fieldname": "production_url",
+   "fieldtype": "Data",
+   "label": "Production URL"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_production",
+   "fieldtype": "Check",
+   "label": "Enable Production"
+  },
+  {
+   "fieldname": "column_break_ktqp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "enable_production",
+   "fieldname": "api_client_id",
+   "fieldtype": "Password",
+   "label": "API Client ID"
+  },
+  {
+   "depends_on": "enable_production",
+   "fieldname": "api_secret",
+   "fieldtype": "Password",
+   "label": "API Secret"
+  },
+  {
+   "fieldname": "sandbox_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Sandbox Settings"
+  },
+  {
+   "depends_on": "enable_sandbox",
+   "fieldname": "sandbox_url",
+   "fieldtype": "Data",
+   "label": "Sandbox URL",
+   "mandatory_depends_on": "enable_sandbox"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_sandbox",
+   "fieldtype": "Check",
+   "label": "Enable Sandbox"
+  },
+  {
+   "fieldname": "column_break_demw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "enable_sandbox",
+   "fieldname": "sandbox_api_client_id",
+   "fieldtype": "Password",
+   "label": "Sandbox API Client ID",
+   "mandatory_depends_on": "enable_sandbox"
+  },
+  {
+   "depends_on": "enable_sandbox",
+   "fieldname": "sandbox_api_secret",
+   "fieldtype": "Password",
+   "label": "Sandbox API Secret",
+   "mandatory_depends_on": "enable_sandbox"
+  },
+  {
+   "fieldname": "general_settings_section",
+   "fieldtype": "Section Break",
+   "label": "General Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "notify_signers",
+   "fieldtype": "Check",
+   "label": "Notify Signers"
+  },
+  {
+   "default": "0",
+   "fieldname": "generate_access_token",
+   "fieldtype": "Check",
+   "label": "Generate Access Token"
+  },
+  {
+   "fieldname": "column_break_klih",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_sign_link",
+   "fieldtype": "Check",
+   "label": "Send Sign Link"
+  },
+  {
+   "fieldname": "enable_for_document_section",
+   "fieldtype": "Section Break",
+   "label": "Enable for Document"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Table",
+   "options": "e-Signature Document"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-12-24 15:07:50.864320",
+ "modified_by": "Administrator",
+ "module": "Ekyc India",
+ "name": "Digio Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

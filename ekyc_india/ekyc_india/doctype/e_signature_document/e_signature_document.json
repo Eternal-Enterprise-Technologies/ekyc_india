@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-03 19:32:57.166138",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_type",
+  "send_request_via",
+  "request_recipient_by_document_field",
+  "expiry_in_days"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "send_request_via",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Send Request Via",
+   "options": "Email\nMobile"
+  },
+  {
+   "fieldname": "request_recipient_by_document_field",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Request Recipient By Document Field"
+  },
+  {
+   "default": "10",
+   "fieldname": "expiry_in_days",
+   "fieldtype": "Int",
+   "label": "Expiry In Days"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-12-24 15:08:19.326065",
+ "modified_by": "Administrator",
+ "module": "Ekyc India",
+ "name": "e-Signature Document",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

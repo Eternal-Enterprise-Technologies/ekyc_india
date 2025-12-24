@@ -245,3 +245,9 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+workflow_methods = [
+	{
+		"name": "Make E Signature Request", 
+		"method": "legal.legal.doctype.digio_settings.digio_settings.make_esignature_request"
+	}
+]

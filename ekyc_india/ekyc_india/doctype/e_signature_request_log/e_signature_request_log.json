@@ -1,0 +1,69 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-19 16:38:28.944818",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "digio_id",
+  "is_agreement",
+  "agreement_type",
+  "agreement_status",
+  "response_json"
+ ],
+ "fields": [
+  {
+   "fieldname": "digio_id",
+   "fieldtype": "Data",
+   "label": "Digio ID"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_agreement",
+   "fieldtype": "Check",
+   "label": "Is Agreement"
+  },
+  {
+   "fieldname": "agreement_type",
+   "fieldtype": "Data",
+   "label": "Agreement Type"
+  },
+  {
+   "fieldname": "agreement_status",
+   "fieldtype": "Data",
+   "label": "Agreement Status"
+  },
+  {
+   "fieldname": "response_json",
+   "fieldtype": "Code",
+   "label": "Response JSON"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-24 15:06:01.957331",
+ "modified_by": "Administrator",
+ "module": "Ekyc India",
+ "name": "e-Signature Request Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
