@@ -12,42 +12,38 @@ class DigioSettings(Document):
 	pass
 
 def make_esignature_request(doc):
+	general_settings = get_general_settings()
+
 	request = frappe._dict()
 	request.update({
 		"signers": get_signers(doc),
-		"expire_in_days": 10,
-		"notify_signers": True,
-		"send_sign_link": True,
-		"generate_access_token": True,
+		"expire_in_days": general_settings.get("expire_in_days"),
+		"notify_signers": general_settings.get("notify_customer"),
+		"send_sign_link": general_settings.get("send_sign_link"),
+		"generate_access_token": general_settings.get("generate_access_token"),
 		"file_name": doc.name,
 		"file_data": get_file_data_in_base64(doc.doctype, doc.name),
 	})
 
-	make_post_api_call(request)
+	send_esignature_request(request)
 
-def make_post_api_call(body):
-	api_client_id, api_client_secret, url = get_api_credentials_and_url()
-	headers = {
-		"Content-Type": "application/json",
-		"Accept": "application/json",
-		"Authorization": "Basic" + base64.b64encode((api_client_id + ":" + api_client_secret).encode('utf-8')).decode()
-	}
+def send_esignature_request(body):
+	api_client_id, api_client_secret, base_url = get_api_credentials_and_url()
+	url = f"{base_url}/v2/client/document/uploadpdf"
 
 	response = make_request(
 		method="POST",
 		url=url,
-		headers=headers,
+		headers=get_headers(api_client_id, api_client_secret),
 		json=body
 	)
 
-	make_e_sign_request_log(response)
+	make_digio_request_log(response)
 
-def make_e_sign_request_log(response):
-	doc = frappe.new_doc("e-Signature Request Log")
+
+def make_digio_request_log(response):
+	doc = frappe.new_doc("Digio Request Log")
 	doc.digio_id = response.get("id")
-	doc.is_agreement = response.get("is_agreement")
-	doc.agreement_status = response.get("agreement_status")
-	doc.agreement_type = response.get("agreement_type")
 	doc.reponse_json = response
 	doc.save(ignore_permissions=True)
 
@@ -112,3 +108,65 @@ def _parse_receiver_by_document_field(s):
 	else:
 		data_field, child_field = fragments[0], None
 	return data_field, child_field
+
+def make_ekyc_request(doc):
+	signers = get_signers(doc)
+	general_settings = get_general_settings()
+
+	# will send a separate eKYC request for each signer
+	for signer in signers:
+		request = frappe._dict()
+		request.update({
+			"customer_identifier": signer,
+			"notify_customer": True,
+			"customer_name": get_customer_name(signer),
+			"template_name": "DIGILOCKER_AADHAAR_PAN",
+			"expire_in_days": general_settings.get("expire_in_days"),
+			"generate_access_token": general_settings.get("generate_access_token"),
+			"reference_id": doc.name,
+			"transaction_id": f"eKYC-{doc.name}-{signer}",
+			"generate_deeplink_info": False,
+		})
+
+		send_ekyc_request(request)
+
+
+def get_customer_name(email_id):
+	customer_name = frappe.db.get_value("Customer", {"email_id": email_id}, "customer_name")
+
+	if not customer_name:
+		# TODO: fetch name from linked Lead or Contact
+		customer_name = ""
+
+	return customer_name
+
+def send_ekyc_request(body):
+	api_client_id, api_client_secret, base_url = get_api_credentials_and_url()
+	url = f"{base_url}/client/kyc/v2/request/with_template"
+
+	response = make_request(
+		method="POST",
+		url=url,
+		headers=get_headers(api_client_id, api_client_secret),
+		json=body
+	)
+
+	make_digio_request_log(response)
+
+def get_general_settings():
+	doc = frappe.get_doc("Digio Settings", "Digio Settings")
+	return {
+		"expire_in_days": doc.request_expiry_days,
+		"notify_customer": doc.notify_customer,
+		"generate_access_token": doc.generate_access_token,
+		"send_sign_link": doc.send_sign_link
+	}
+
+def get_headers(api_client_id, api_client_secret):
+	headers = {
+		"Content-Type": "application/json",
+		"Accept": "application/json",
+		"Authorization": "Basic" + base64.b64encode((api_client_id + ":" + api_client_secret).encode('utf-8')).decode()
+	}
+
+	return headers

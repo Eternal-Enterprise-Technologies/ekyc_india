@@ -13,9 +13,9 @@ IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
 
-class IntegrationTesteSignatureRequestLog(IntegrationTestCase):
+class IntegrationTestDigioRequestLog(IntegrationTestCase):
 	"""
-	Integration tests for eSignatureRequestLog.
+	Integration tests for DigioRequestLog.
 	Use this class for testing interactions between multiple components.
 	"""
 

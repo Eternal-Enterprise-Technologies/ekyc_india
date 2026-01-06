@@ -5,6 +5,12 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "general_settings_section",
+  "request_expiry_in_days",
+  "column_break_klih",
+  "send_sign_link",
+  "notify_customers",
+  "generate_access_token",
   "production_settings_section",
   "production_url",
   "enable_production",
@@ -17,11 +23,6 @@
   "column_break_demw",
   "sandbox_api_client_id",
   "sandbox_api_secret",
-  "general_settings_section",
-  "notify_signers",
-  "generate_access_token",
-  "column_break_klih",
-  "send_sign_link",
   "enable_for_document_section",
   "documents"
  ],
@@ -102,12 +103,6 @@
   },
   {
    "default": "0",
-   "fieldname": "notify_signers",
-   "fieldtype": "Check",
-   "label": "Notify Signers"
-  },
-  {
-   "default": "0",
    "fieldname": "generate_access_token",
    "fieldtype": "Check",
    "label": "Generate Access Token"
@@ -125,19 +120,32 @@
   {
    "fieldname": "enable_for_document_section",
    "fieldtype": "Section Break",
-   "label": "Enable for Document"
+   "label": "Enable e-Sign for Document"
   },
   {
    "fieldname": "documents",
    "fieldtype": "Table",
    "options": "e-Signature Document"
+  },
+  {
+   "fieldname": "request_expiry_in_days",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Request Expiry In Days",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "notify_customers",
+   "fieldtype": "Check",
+   "label": "Notify Customers"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-12-24 15:07:50.864320",
+ "modified": "2025-12-24 16:20:26.555451",
  "modified_by": "Administrator",
  "module": "Ekyc India",
  "name": "Digio Settings",

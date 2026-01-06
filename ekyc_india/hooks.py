@@ -248,6 +248,10 @@ app_license = "mit"
 workflow_methods = [
 	{
 		"name": "Make E Signature Request", 
-		"method": "legal.legal.doctype.digio_settings.digio_settings.make_esignature_request"
+		"method": "ekyc_india.ekyc_india.doctype.digio_settings.digio_settings.make_esignature_request"
+	},
+	{
+		"name": "Send eKYC Request", 
+		"method": "ekyc_india.ekyc_india.doctype.digio_settings.digio_settings.send_ekyc_request"
 	}
 ]

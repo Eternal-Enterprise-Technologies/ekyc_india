@@ -1,7 +1,7 @@
 // Copyright (c) 2025, hello@frappe.io and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("e-Signature Request Log", {
+// frappe.ui.form.on("Digio Request Log", {
 // 	refresh(frm) {
 
 // 	},

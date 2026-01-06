@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class eSignatureRequestLog(Document):
+class DigioRequestLog(Document):
 	pass
