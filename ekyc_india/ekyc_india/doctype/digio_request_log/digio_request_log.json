@@ -6,9 +6,6 @@
  "engine": "InnoDB",
  "field_order": [
   "digio_id",
-  "is_agreement",
-  "agreement_type",
-  "agreement_status",
   "response_json"
  ],
  "fields": [
@@ -16,22 +13,6 @@
    "fieldname": "digio_id",
    "fieldtype": "Data",
    "label": "Digio ID"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_agreement",
-   "fieldtype": "Check",
-   "label": "Is Agreement"
-  },
-  {
-   "fieldname": "agreement_type",
-   "fieldtype": "Data",
-   "label": "Agreement Type"
-  },
-  {
-   "fieldname": "agreement_status",
-   "fieldtype": "Data",
-   "label": "Agreement Status"
   },
   {
    "fieldname": "response_json",
@@ -42,7 +23,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-24 15:06:01.957331",
+ "modified": "2026-01-07 15:33:20.981146",
  "modified_by": "Administrator",
  "module": "Ekyc India",
  "name": "Digio Request Log",

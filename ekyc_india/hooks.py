@@ -252,6 +252,6 @@ workflow_methods = [
 	},
 	{
 		"name": "Send eKYC Request", 
-		"method": "ekyc_india.ekyc_india.doctype.digio_settings.digio_settings.send_ekyc_request"
+		"method": "ekyc_india.ekyc_india.doctype.digio_settings.digio_settings.make_ekyc_request"
 	}
 ]

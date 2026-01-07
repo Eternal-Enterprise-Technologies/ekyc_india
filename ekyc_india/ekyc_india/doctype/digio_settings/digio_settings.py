@@ -6,7 +6,7 @@ from frappe.model.document import Document
 import base64
 from frappe.integrations.utils import make_request
 from frappe.utils.password import get_decrypted_password
-
+import json
 
 class DigioSettings(Document):
 	pass
@@ -44,7 +44,7 @@ def send_esignature_request(body):
 def make_digio_request_log(response):
 	doc = frappe.new_doc("Digio Request Log")
 	doc.digio_id = response.get("id")
-	doc.reponse_json = response
+	doc.response_json = json.dumps(response, indent=1)
 	doc.save(ignore_permissions=True)
 
 
@@ -97,7 +97,7 @@ def get_signers(doc):
 			email_ids_value = doc.get(data_field)
 			email_ids = email_ids_value.replace(",", "\n")
 			signers = signers + email_ids.split("\n")
-	
+
 	return signers
 
 def _parse_receiver_by_document_field(s):
@@ -124,7 +124,7 @@ def make_ekyc_request(doc):
 			"expire_in_days": general_settings.get("expire_in_days"),
 			"generate_access_token": general_settings.get("generate_access_token"),
 			"reference_id": doc.name,
-			"transaction_id": f"eKYC-{doc.name}-{signer}",
+			"transaction_id": frappe.generate_hash(length=12),
 			"generate_deeplink_info": False,
 		})
 
@@ -156,8 +156,8 @@ def send_ekyc_request(body):
 def get_general_settings():
 	doc = frappe.get_doc("Digio Settings", "Digio Settings")
 	return {
-		"expire_in_days": doc.request_expiry_days,
-		"notify_customer": doc.notify_customer,
+		"expire_in_days": doc.request_expiry_in_days,
+		"notify_customer": doc.notify_customers,
 		"generate_access_token": doc.generate_access_token,
 		"send_sign_link": doc.send_sign_link
 	}
