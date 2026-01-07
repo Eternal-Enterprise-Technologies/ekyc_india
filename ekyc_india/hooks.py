@@ -86,7 +86,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "ekyc_india.install.before_install"
-# after_install = "ekyc_india.install.after_install"
+after_install = "ekyc_india.install.after_install"
 
 # Uninstallation
 # ------------
@@ -247,7 +247,7 @@ app_license = "mit"
 
 workflow_methods = [
 	{
-		"name": "Make E Signature Request", 
+		"name": "Make eSignature Request", 
 		"method": "ekyc_india.ekyc_india.doctype.digio_settings.digio_settings.make_esignature_request"
 	},
 	{
