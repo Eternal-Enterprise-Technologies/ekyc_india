@@ -13,14 +13,24 @@ class DigioSettings(Document):
 
 def make_esignature_request(doc):
 	general_settings = get_general_settings()
+	signers = []
+	signer_emails = get_signers(doc)
+
+	for signer in signer_emails:
+		signers.append({
+			"identifier": signer,
+			"name": get_customer_name(signer),
+			"sign_type": "aadhaar",
+			"reason": "Please sign the document"
+		})
 
 	request = frappe._dict()
 	request.update({
-		"signers": get_signers(doc),
+		"signers": signers,
 		"expire_in_days": general_settings.get("expire_in_days"),
-		"notify_signers": general_settings.get("notify_customer"),
-		"send_sign_link": general_settings.get("send_sign_link"),
-		"generate_access_token": general_settings.get("generate_access_token"),
+		"notify_signers": bool(general_settings.get("notify_customer")),
+		"send_sign_link": bool(general_settings.get("send_sign_link")),
+		"generate_access_token": bool(general_settings.get("generate_access_token")),
 		"file_name": doc.name,
 		"file_data": get_file_data_in_base64(doc.doctype, doc.name),
 	})
@@ -74,6 +84,7 @@ def get_file_data_in_base64(doctype, docname):
 
 
 def get_signers(doc):
+	from frappe.model.workflow import _parse_receiver_by_document_field
 	signers = []
 	receiver_fields = frappe.db.get_all(
 		"e-Signature Document",
@@ -99,15 +110,6 @@ def get_signers(doc):
 			signers = signers + email_ids.split("\n")
 
 	return signers
-
-def _parse_receiver_by_document_field(s):
-	fragments = s.split(",")
-	# fields from child table or linked doctype
-	if len(fragments) > 1:
-		data_field, child_field = fragments
-	else:
-		data_field, child_field = fragments[0], None
-	return data_field, child_field
 
 def make_ekyc_request(doc):
 	signers = get_signers(doc)
@@ -170,3 +172,14 @@ def get_headers(api_client_id, api_client_secret):
 	}
 
 	return headers
+
+
+@frappe.whitelist()
+def update_digio_settings(production_url, api_client_id, api_secret):
+	doc = frappe.get_single("Digio Settings")
+	doc.enable_production = 1
+	doc.production_url = production_url
+	doc.api_client_id = api_client_id
+	doc.api_secret = api_secret
+	doc.save()
+

@@ -12,6 +12,7 @@
   {
    "fieldname": "digio_id",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Digio ID"
   },
   {
@@ -23,7 +24,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-07 15:33:20.981146",
+ "modified": "2026-01-21 14:24:42.576196",
  "modified_by": "Administrator",
  "module": "Ekyc India",
  "name": "Digio Request Log",
