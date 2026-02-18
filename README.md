@@ -1,40 +1,16 @@
-### Ekyc India
+<div align="center">
+	<h2>eKYC India</h2>
+	<p align="center">
+		<p>Official frappe app for identity and compliance integrations</p>
+	</p>
+</div>
 
-Indian compliance integrations
+## Digio Integration
 
-### Installation
-
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
-
-```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app ekyc_india
-```
-
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
-
-```bash
-cd apps/ekyc_india
-pre-commit install
-```
-
-Pre-commit is configured to use the following tools for checking and formatting your code:
-
-- ruff
-- eslint
-- prettier
-- pyupgrade
-### CI
-
-This app can use GitHub Actions for CI. The following workflows are configured:
-
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
+For doing KYC and e-Signing via Aadhar, users will have to enable Digio Integration
+TBA
 
 
-### License
 
-mit
+## Credit Score Fetch
+TBA
