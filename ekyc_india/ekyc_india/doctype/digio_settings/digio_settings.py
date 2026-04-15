@@ -84,7 +84,7 @@ def get_file_data_in_base64(doctype, docname):
 
 
 def get_signers(doc):
-	from frappe.model.workflow import _parse_receiver_by_document_field
+	from frappe.email.doctype.notification.notification import _parse_receiver_by_document_field
 	signers = []
 	receiver_fields = frappe.db.get_all(
 		"e-Signature Document",
