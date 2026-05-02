@@ -158,7 +158,9 @@ def make_ekyc_request(doc):
                 "customer_name": get_customer_name(signer),
                 "template_name": "DIGILOCKER_AADHAAR_PAN",
                 "expire_in_days": general_settings.get("expire_in_days"),
-                "generate_access_token": general_settings.get("generate_access_token"),
+                "generate_access_token": bool(
+                    general_settings.get("generate_access_token")
+                ),
                 "reference_id": doc.name,
                 "transaction_id": frappe.generate_hash(length=12),
                 "generate_deeplink_info": False,
